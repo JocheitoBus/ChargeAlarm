@@ -1,7 +1,6 @@
 import threading
 import time
 import traceback
-from domain.entities import BatteryState
 from domain.use_cases import MonitorBatteryUseCase, ManageAlarmUseCase
 
 class AlarmViewModel:
@@ -22,7 +21,7 @@ class AlarmViewModel:
                 self._ui_callback()
         except Exception as e:
             pass
-        
+
     def get_alarm_state(self) -> bool:
         battery = self.battery_use_case.execute()
         return self.alarm_use_case.get_alarm_state(battery)

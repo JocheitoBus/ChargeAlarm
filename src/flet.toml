@@ -1,0 +1,3 @@
+[flet]
+# Le indicamos a Flet que no intente compilar psutil para Android
+exclude_packages = ["psutil"]
