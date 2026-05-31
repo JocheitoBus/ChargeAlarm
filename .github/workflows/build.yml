@@ -37,10 +37,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install flet flet-audio
 
-      # PASO CORREGIDO: Le decimos a Flet exactamente qué carpeta usar y cómo se llama el archivo
       - name: Compilar APK con Flet
         run: |
-          yes | flet build apk --project src --module-name main
+          cd src
+          yes | flet build apk .
 
       - name: Subir APK compilado
         uses: actions/upload-artifact@v4
