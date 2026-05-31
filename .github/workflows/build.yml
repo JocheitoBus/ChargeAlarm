@@ -37,10 +37,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install flet flet-audio
 
-      # PASO CORREGIDO: Usamos "yes |" para responder automáticamente que SÍ a Flutter
+      # PASO CORREGIDO: Le decimos a Flet exactamente qué carpeta usar y cómo se llama el archivo
       - name: Compilar APK con Flet
         run: |
-          yes | flet build apk --project src
+          yes | flet build apk --project src --module-name main
 
       - name: Subir APK compilado
         uses: actions/upload-artifact@v4
