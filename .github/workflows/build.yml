@@ -46,4 +46,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ChargeAlarm-Android-APK
-          path: build/apk/*.apk
+          path: src/build/apk/*.apk
