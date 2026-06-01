@@ -4,7 +4,6 @@ from typing import Optional
 @dataclass
 class BatteryState:
     is_charging: bool
-    percentage: int
 
 @dataclass
 class AlarmSettings:

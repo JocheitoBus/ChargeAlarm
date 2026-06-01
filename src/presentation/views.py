@@ -78,6 +78,7 @@ class AlarmView(ft.Container):
         # Boton Activar Alarma
         enabled = self.vm.alarm_use_case.load_saved_data().is_enabled
         charging = self.vm.battery_use_case.execute().is_charging
+        print(f"enabled: {enabled}, charging: {charging}")
         if enabled:
             self.alarm_text.value = "DESACTIVAR\nALARMA"
             if charging:
@@ -92,7 +93,6 @@ class AlarmView(ft.Container):
                 self.alarm_text.value = "SIN\nCORRIENTE"
                 self.alarm_button.bgcolor = ft.Colors.GREY
 
-            
         self.update()
 
     def _auto_refresh(self):
@@ -101,8 +101,8 @@ class AlarmView(ft.Container):
                 if not self.main_page or self.main_page.session is None:
                     break
 
-                self.render()
                 self.vm.alarm_use_case.check_plugged(self.vm.battery_use_case.execute())
+                self.render()
             except Exception:
                 pass
             time.sleep(1)

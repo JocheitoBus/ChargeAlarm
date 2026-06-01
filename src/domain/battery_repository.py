@@ -26,8 +26,5 @@ class BatteryRepository(IBatteryRepository):
             return False
 
     def get_current_state(self) -> BatteryState:
-        battery_sensor = psutil.sensors_battery()
-        chargig = self.is_plugged_in
-        percentage = battery_sensor.percent if battery_sensor else 0
-
-        return BatteryState(is_charging=chargig,percentage=percentage)
+        chargig = self.is_plugged_in()
+        return BatteryState(is_charging=chargig)
