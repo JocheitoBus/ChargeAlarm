@@ -40,7 +40,7 @@ jobs:
       - name: Compilar APK con Flet
         run: |
           cd src
-          yes | flet build apk . --package flet_audio
+          yes | flet build apk .
 
       - name: Subir APK compilado
         uses: actions/upload-artifact@v4

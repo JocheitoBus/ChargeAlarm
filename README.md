@@ -21,7 +21,7 @@ El propósito de este proyecto es construir una aplicación móvil funcional, ma
 
 *   **Lenguaje Core:** Python 3.10+
 *   **Framework de Interfaz de Usuario:** Flet (motor UI basado en Flutter adaptado a Python)
-*   **Gestión de Audio:** Componente nativo `flet.Audio`
+*   **Gestión de Audio:** Componente nativo `flet_audio`
 *   **Monitoreo del Sistema:** Servicios nativos/librerías de sensores (según la abstracción de la capa de datos)
 *   **Entorno de Desarrollo (IDE):** Visual Studio Code
 *   **Compilación y Despliegue:** GitHub Actions (automatización de compilación de archivos `.apk` en la nube)
@@ -37,29 +37,36 @@ power_alarm/
 │
 ├── .github/
 │   └── workflows/
-│       └── build.yml          # Configuración de compilación automatizada en la nube
+│       └── build.yml             # Configuración de compilación automatizada en la nube
 │
 ├── src/
 │   ├── __init__.py
 │   │
-│   ├── domain/                # Capa 1: Lógica de Negocio Pura (Independiente)
+│   ├── domain/                   # Capa 1: Lógica de Negocio Pura (Independiente)
 │   │   ├── __init__.py
-│   │   ├── entities.py        # Modelos de datos de negocio (ej. Alarma, EstadoBateria)
-│   │   ├── interfaces.py      # Contratos/Interfaces abstractas de repositorios
-│   │   └── use_cases.py       # Casos de uso de la app (ej. ActivarAlarma, VerificarCarga)
+│   │   ├── entities.py           # Modelos de datos de negocio (ej. Alarma, EstadoBateria)
+│   │   ├── interfaces.py         # Contratos/Interfaces abstractas de repositorios
+│   │   ├── battery_repository.py # Monitoreo físico o simulado de la corriente eléctrica
+│   │   ├── config_repository.py  # Manejo del archivo de configuracion personalizada/estado
+│   │   ├── audio_repository.py   # Selector de archivos y reproductor de sonido
+│   │   └── use_cases.py          # Casos de uso de la app (ej. ActivarAlarma, VerificarCarga)
 │   │
-│   ├── data/                  # Capa 2: Repositorios, Hardware e Infraestructura
+│   ├── data/                     # Capa 2: Repositorios, Hardware e Infraestructura
 │   │   ├── __init__.py
-│   │   ├── battery_service.py # Monitoreo físico o simulado de la corriente eléctrica
-│   │   ├── audio_service.py   # Selector de archivos y reproductor de sonido
-│   │   └── repositories.py    # Implementación concreta de los contratos del dominio
+│   │   ├── battery_service.py    # Monitoreo físico o simulado de la corriente eléctrica
+│   │   ├── audio_service.py      # Selector de archivos y reproductor de sonido
+│   │   └── repositories.py       # Implementación concreta de los contratos del dominio
 │   │
-│   ├── presentation/          # Capa 3: Interfaz Gráfica de Usuario (Flet UI)
+│   ├── presentation/             # Capa 3: Interfaz Gráfica de Usuario (Flet UI)
 │   │   ├── __init__.py
-│   │   ├── views.py           # Vistas, pantallas y diseño visual interactivo
-│   │   └── view_models.py     # Manejadores de estado y controladores de eventos de la UI
+│   │   ├── views.py              # Vistas, pantallas y diseño visual interactivo
+│   │   └── view_models.py        # Manejadores de estado y controladores de eventos de la UI
 │   │
-│   └── main.py                # Punto de entrada de la aplicación e Inyección de Dependencias
+│   ├── assets                    # Capa 4: Archivos Multimedia
+│   │   └── audio              
+│   │       └── alarm.m4a         # Archivo de audio de alarma por defecto
+│   │
+│   └── main.py                   # Punto de entrada de la aplicación e Inyección de Dependencias
+│   └── requirements.txt          # Dependencias y paquetes del proyecto
 │
-├── README.md                  # Este archivo informativo
-└── requirements.txt           # Dependencias y paquetes del proyecto
+└── README.md                     # Este archivo informativo
